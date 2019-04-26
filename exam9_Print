@@ -1,0 +1,84 @@
+assume cs:code
+
+data segment
+        db 'welcome to masm!'
+data ends
+
+
+
+
+
+
+
+code segment
+start:
+        mov ax, 0b878H
+        mov es, ax ; es is the buffer
+
+        mov ax, data
+        mov ds, ax ; ds is the data set
+
+
+        mov bx, 40H
+        mov di, 0
+        mov si, 0
+
+
+        ;the first line - start
+        mov cx, 16
+s:
+
+        mov al, [si]
+        mov byte ptr es:[bx+di], al
+        inc di
+        mov byte ptr es:[bx+di], 2H
+        inc di
+        inc si
+        loop s
+        ;the first line -end
+
+
+        ;the second line - start
+
+        add bx, 0a0H
+        mov si, 0
+        mov di,0
+
+        mov cx, 16
+s1:
+        mov al, [si]
+        mov es:[bx+di],al
+        inc di
+        mov byte ptr es:[bx+di], 24H
+        inc di
+        inc si
+        loop s1
+
+        ;the seconde line - end
+
+        ;the third line - start
+
+        add bx, 0a0H
+        mov si, 0
+        mov di,0
+
+        mov cx, 16
+s2:
+        mov al, [si]
+        mov es:[bx+di],al
+        inc di
+        mov byte ptr es:[bx+di], 71H
+        inc di
+        inc si
+        loop s2
+
+        ;the third line - end
+
+
+
+        mov ax, 4c00h
+        int 21H
+code ends
+
+
+end start
