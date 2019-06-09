@@ -65,7 +65,7 @@ sub1s:
 	pop bx
 	ret
 
-
+;
 
 ;set foreground by al's rightest three bits
 sub2:
